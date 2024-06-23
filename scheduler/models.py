@@ -42,6 +42,7 @@ class TimeSlot(models.Model):
         self.priority = new_priority
         self.save()
 
-    def set_status(self, new_status):
-        self.status = new_status
+    def book(self, customer):
+        self.customer = customer
+        self.status = 2
         self.save()
