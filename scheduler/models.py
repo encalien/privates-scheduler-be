@@ -17,7 +17,7 @@ class Status(models.IntegerChoices):
 # Create your models here.
 
 
-class Customer(models.Model):
+class User(models.Model):
     first_name = models.CharField()
     last_name = models.CharField()
     email = models.EmailField()
@@ -31,8 +31,14 @@ class TimeSlot(models.Model):
     end_date = models.DateTimeField()
     priority = models.PositiveIntegerField(choices=Priority, default=Priority.YELLOW)
     status = models.PositiveIntegerField(choices=Status, default=Status.OPEN)
+    owner = models.ForeignKey(
+        User, on_delete=models.SET_NULL, null=True, blank=True, related_name="owner"
+    )
+    provider = models.ForeignKey(
+        User, on_delete=models.SET_NULL, null=True, blank=True, related_name="provider"
+    )
     customer = models.ForeignKey(
-        Customer, on_delete=models.SET_NULL, null=True, blank=True
+        User, on_delete=models.SET_NULL, null=True, blank=True, related_name="customer"
     )
 
     def __str__(self):

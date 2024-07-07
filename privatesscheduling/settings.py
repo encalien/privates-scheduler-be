@@ -59,13 +59,11 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "corsheaders.middleware.CorsMiddleware",
-    'djangorestframework_camel_case.middleware.CamelCaseMiddleWare',
+    "djangorestframework_camel_case.middleware.CamelCaseMiddleWare",
 ]
 
 CORS_ORIGIN_ALLOW_ALL = False
-CORS_ORIGIN_WHITELIST = (
-  'http://localhost:5173',
-)
+CORS_ORIGIN_WHITELIST = ("http://localhost:5173",)
 
 ROOT_URLCONF = "privatesscheduling.urls"
 
@@ -88,14 +86,20 @@ TEMPLATES = [
 WSGI_APPLICATION = "privatesscheduling.wsgi.application"
 
 REST_FRAMEWORK = {
-    'DEFAULT_RENDERER_CLASSES': (
-        'djangorestframework_camel_case.render.CamelCaseJSONRenderer',
-        'djangorestframework_camel_case.render.CamelCaseBrowsableAPIRenderer',
+    "DEFAULT_RENDERER_CLASSES": (
+        "djangorestframework_camel_case.render.CamelCaseJSONRenderer",
+        "djangorestframework_camel_case.render.CamelCaseBrowsableAPIRenderer",
     ),
-    'DEFAULT_PARSER_CLASSES': (
-        'djangorestframework_camel_case.parser.CamelCaseJSONParser',
+    "DEFAULT_PARSER_CLASSES": (
+        "djangorestframework_camel_case.parser.CamelCaseJSONParser",
     ),
 }
+
+EMAIL_HOST = "smtp.eu.mailgun.org"
+EMAIL_PORT = 587
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+EMAIL_USE_TLS = True
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
